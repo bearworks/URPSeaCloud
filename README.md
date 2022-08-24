@@ -8,6 +8,7 @@ This is an sea&cloud project for distance cloud rendering for URP (10.x+). The D
 Reference:  
 https://www.guerrilla-games.com/read/the-real-time-volumetric-cloudscapes-of-horizon-zero-dawn
 https://github.com/kode80/kode80CloudsUnity3D
+https://github.com/bearworks/URPOceanTessellation
 
 Noise Tools:  
 https://github.com/mtwoodard/TextureGenerator
