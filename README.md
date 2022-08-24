@@ -1,7 +1,6 @@
 # URPSeaCloud
 
-
-This is an sea&cloud project for distance cloud rendering for URP (10.x+). The Demoscene1 can run up to 60FPS+ on the old graphics card HD 7730 (release time: June 25, 2013), and the cloud rendering time under 1080p is about 2ms. Demoscene1's sea&cloud can also run to 30FPS on mobile devices (adreno 618).
+This is an sea&cloud project for distance cloud rendering for URP (10.x+). The Demoscene1 can run up to 60FPS+ on the old graphics card HD 7730 (release time: June 25, 2013), and the cloud rendering time at 1080p is about 2ms. Demoscene1's sea&cloud can also run to 30FPS on 1080p mobile devices which are using adreno 618 GPU.
 
 ![](./Image/URPSeaCloud.png)
 <p align="center">Demo scene</p>
