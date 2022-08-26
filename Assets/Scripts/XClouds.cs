@@ -19,9 +19,12 @@ namespace XClouds
 		[Range( 1.0f, 8.0f)]
 		public int downsample = 2;
 
-        [HeaderAttribute("Lighting")]
-        public Color cloudBaseColor = new Color32(132, 170, 208, 255);
-		public Color cloudTopColor = new Color32(255, 255, 255, 255);
+		[HeaderAttribute("Lighting")]
+
+		public Gradient cloudSunColor = new Gradient();
+		public Gradient cloudBaseColor = new Gradient();
+		public Gradient cloudTopColor = new Gradient();
+
 		[Range( 0.0f, 0.5f)]
 		public float sunScalar = 1.0f;
 		[Range( 0.0f, 0.5f)]
@@ -314,8 +317,19 @@ namespace XClouds
 				_cloudMaterial.SetFloat( "_AmbientScalar", ambientScalar);
 				_cloudMaterial.SetTexture( "_Coverage", cloudCoverage);
 
-				_cloudMaterial.SetColor( "_CloudBaseColor", cloudBaseColor);
-				_cloudMaterial.SetColor( "_CloudTopColor", cloudTopColor);
+				float ForwardY = 0.75f;
+				float sunIntensity = 1f;
+				if (RenderSettings.sun != null)
+				{
+					Vector3 Forward = (RenderSettings.sun.transform.rotation * Vector3.forward).normalized;
+					ForwardY = -Forward.y;
+					ForwardY = Mathf.Max(ForwardY * 0.5f + 0.5f, 0f);
+					sunIntensity = RenderSettings.sun.intensity;
+				}
+
+				_cloudMaterial.SetColor( "_CloudBaseColor", cloudBaseColor.Evaluate(ForwardY));
+				_cloudMaterial.SetColor( "_CloudTopColor", cloudTopColor.Evaluate(ForwardY));
+				_cloudMaterial.SetColor("_SunLightColor", sunIntensity * cloudSunColor.Evaluate(ForwardY));
 
 				float atmosphereThickness = atmosphereEndHeight - atmosphereStartHeight;
 				_cloudMaterial.SetFloat("_StartHeight", atmosphereStartHeight + earthRadius);

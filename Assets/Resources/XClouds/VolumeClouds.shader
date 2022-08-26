@@ -45,6 +45,7 @@
 			float _AmbientScalar;
 			float3 _CloudBaseColor;
 			float3 _CloudTopColor;
+			float3 _SunLightColor;
 			float _SunRayLength;
 			float _ConeRadius;
 		 	float _MaxIterations;
@@ -208,7 +209,7 @@
 				float backwardsP = HenyeyGreensteinPhase( cosAngle, -0.003);
 				float P = (forwardP + backwardsP) / 2.0;
 
-				return _MainLightColor.rgb * BeerTerm(thickness) * PowderTerm(originDensity, cosAngle) * P;
+				return _SunLightColor.rgb * BeerTerm(thickness) * PowderTerm(originDensity, cosAngle) * P;
 			}
 
 			inline float3 SampleAmbientLight(float atmosphereY)
