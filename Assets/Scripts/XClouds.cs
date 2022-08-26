@@ -253,6 +253,7 @@ namespace XClouds
 		{
 			if( _randomVectors == null || _randomVectors.Length < 1)
 			{
+				Random.InitState(0);
 				_randomVectors = new Vector3[] { Random.onUnitSphere,
 					Random.onUnitSphere,
 					Random.onUnitSphere,
